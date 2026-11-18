@@ -608,10 +608,9 @@ class Handler(BaseHTTPRequestHandler):
         conn.close()
 
 if __name__ == "__main__":
-    PUERTO = 8000
-    servidor = HTTPServer(("127.0.0.1", PUERTO), Handler)
-    print(f"\n🚀 **CyberDesk OS** activo en: http://localhost:{PUERTO}")
-    print("   Entra a ese enlace en tu navegador. Presiona Ctrl+C para salir.\n")
+    PUERTO = int(os.environ.get("PORT", 8000))
+    servidor = HTTPServer(("0.0.0.0", PUERTO), Handler)
+    print(f"CyberDesk activo en el puerto {PUERTO}")
     try:
         servidor.serve_forever()
     except KeyboardInterrupt:
